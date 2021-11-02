@@ -15,7 +15,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String userName;
     private String password;
     private boolean active;
@@ -23,5 +23,6 @@ public class User {
     private Long age;
     //one user has many invoices
     @OneToMany(mappedBy = "user")
+    @Column(nullable=true)
     private List<Invoice> invoiceList;
 }

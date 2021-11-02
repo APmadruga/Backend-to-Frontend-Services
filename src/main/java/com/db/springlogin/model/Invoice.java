@@ -24,6 +24,7 @@ public class Invoice {
 
     //and invoice can have many products
     @OneToMany(mappedBy = "invoice")
+    @Column(nullable=true)
     private List<Product> productList;
 
 }
