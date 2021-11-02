@@ -26,7 +26,7 @@ public class UserService implements UserDetailsService {
         return user.map(UserDetails::new).get();
     }
 
-    public User getUserInformation(){
+   /* public User getUserInformation(){
         return userRepository.findById(2L).get();
     }
 
@@ -36,5 +36,5 @@ public class UserService implements UserDetailsService {
         String password = user.getPassword();
         Long age = user.getAge();
         return userRepository.save(user);
-    }
+    }*/
 }

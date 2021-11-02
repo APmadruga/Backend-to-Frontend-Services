@@ -29,9 +29,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasAnyRole("ADMIN", "USER")
                 //permit only some endpoints accordingly userRole permissions instead of ".permitAll()"
-                .antMatchers("/").permitAll() //.and().httpBasic()
-                .and().formLogin();
+                .antMatchers("/").permitAll().and().httpBasic();
+                //.and().formLogin();
     }
+
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
