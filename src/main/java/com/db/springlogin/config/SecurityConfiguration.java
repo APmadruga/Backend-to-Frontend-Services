@@ -25,14 +25,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        /*http.httpBasic().disable();
+        http.authorizeRequests().antMatchers("/signup").permitAll().antMatchers("/*")
+                .fullyAuthenticated().and().formLogin()
+                .and().csrf().disable();
+        http.csrf().disable();*/
+        http.csrf().disable();
+        /* http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasAnyRole("ADMIN", "USER")
                 //permit only some endpoints accordingly userRole permissions instead of ".permitAll()"
-                .antMatchers("/").permitAll().and().httpBasic();
-                //.and().formLogin();
+                .antMatchers("/").permitAll()
+                .and().httpBasic();
+                //.and().formLogin();*/
     }
-
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {

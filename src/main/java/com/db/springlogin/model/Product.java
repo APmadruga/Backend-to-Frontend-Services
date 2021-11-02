@@ -10,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(indexes = @Index(columnList = "name", unique = true))
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
