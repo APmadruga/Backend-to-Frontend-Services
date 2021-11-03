@@ -11,5 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 public class InvoiceRQ {
     //private Long number;
+    private String name;
     private List<ProductRQ> productRQList;
 }

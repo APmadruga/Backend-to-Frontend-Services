@@ -27,6 +27,36 @@ public class InvoiceController {
         this.productService = productService;
     }
 
+    @GetMapping("/invoices/{name}")
+    public ResponseEntity<InvoiceRS> getInvoiceByName(String invoiceName){
+        Invoice invoice = invoiceService.getInvoiceByName(invoiceName);
+        Long number = invoice.getNumber();
+        Long total = invoice.getTotal();
+        List<Product> productList = invoice.getProductList();
+        List<ProductRS> productRSList = new ArrayList<ProductRS>();
+        for (Product product : productList) {
+            Long productId = product.getId();
+            Long value = product.getValue();
+            String name = product.getName();
+            ProductRS productRS = new ProductRS(
+                    productId,
+                    value,
+                    name
+            );
+            productRSList.add(productRS);
+        }
+        Long invoiceId = invoice.getId();
+        InvoiceRS invoiceRS = new InvoiceRS(
+                invoiceId,
+                number,
+                invoiceName,
+                productRSList,
+                total
+        );
+        return ResponseEntity.ok(invoiceRS);
+    }
+
+
     @ApiOperation(value = "Update registration detail",
             authorizations = { @Authorization(value="basicAuth") })
     @GetMapping("/invoices/{id}")
@@ -47,9 +77,11 @@ public class InvoiceController {
             );
             productRSList.add(productRS);
         }
+        String invoiceName = invoice.getName();
         InvoiceRS invoiceRS = new InvoiceRS(
                 id,
                 number,
+                invoiceName,
                 productRSList,
                 total
         );
@@ -79,9 +111,11 @@ public class InvoiceController {
                 );
                 productRSList.add(productRS);
             }
+            String invoiceName = invoice.getName();
             InvoiceRS invoiceRS = new InvoiceRS(
                 id,
                 number,
+                invoiceName,
                 productRSList,
                 total
             );
@@ -110,10 +144,11 @@ public class InvoiceController {
             );
             productRSList.add(productRS);
         }
-
+        String invoiceName = invoice.getName();
         InvoiceRS invoiceRS = new InvoiceRS(
                 id,
                 number,
+                invoiceName,
                 productRSList,
                 total
         );

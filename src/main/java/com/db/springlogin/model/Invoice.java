@@ -11,13 +11,14 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(indexes = @Index(columnList = "name", unique = true))
 public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long number;
     private Long total;
-
+    private String name;
 
     //invoice has only one User
     @ManyToOne

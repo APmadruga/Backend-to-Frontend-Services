@@ -11,6 +11,7 @@ import com.db.springlogin.repository.UserRepository;
 import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -29,12 +30,17 @@ public class InvoiceService {
     public Invoice createInvoice(InvoiceRQ invoiceRQ) {
         // It will generate 6 digit random Number.
         // from 0 to 999999
-        Random rnd = new Random();
+        int diaMes = LocalDateTime.now().getDayOfMonth();
+        int numMes = LocalDateTime.now().getMonthValue();
+        int hourNum = LocalDateTime.now().getHour();
+        int minNum = LocalDateTime.now().getMinute();
+        String str = "" + diaMes + numMes + hourNum + minNum;
+        /* Random rnd = new Random();
         int randomNumber = rnd.nextInt(999999);
-
+        Long.valueOf(randomNumber);*/
         // this will convert any number sequence into 6 character.
-
-        Long number = Long.valueOf(randomNumber);//invoiceRQ.getNumber();
+        Long number = Long.valueOf(str); //invoiceRQ.getNumber();
+        String invoiceName = invoiceRQ.getName();
         final Long[] total = {0L};
         User user = userRepository.getById(2L);
 
@@ -51,6 +57,7 @@ public class InvoiceService {
         Long longTotal = total[0];
         Invoice invoice = Invoice
                 .builder()
+                .name(invoiceName)
                 .number(number)
                 .total(total[0])
                 .user(user)
@@ -81,6 +88,14 @@ public class InvoiceService {
             return invoiceRepository.findById(id).get();
         }catch (Exception e){
             throw new ResourceNotFound("Invoice Not Found");
+        }
+    }
+
+    public Invoice getInvoiceByName(String invoiceName) {
+        try{
+            return invoiceRepository.findByName(invoiceName).get();
+        } catch (Exception e){
+            throw new ResourceNotFound("Add a valid name to invoice");
         }
     }
 

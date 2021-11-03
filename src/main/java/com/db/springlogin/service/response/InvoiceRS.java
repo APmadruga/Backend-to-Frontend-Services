@@ -11,6 +11,7 @@ import java.util.List;
 public class InvoiceRS {
     private Long id;
     private Long number;
+    private String name;
     private List<ProductRS> productRSList;
     private Long total;
 
