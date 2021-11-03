@@ -11,10 +11,7 @@ import com.db.springlogin.repository.UserRepository;
 import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,39 +28,39 @@ public class InvoiceService {
     }
     public Invoice createInvoice(InvoiceRQ invoiceRQ) {
         Long number = invoiceRQ.getNumber();
-        Long total = 0L;
+        final Long[] total = {0L};
         User user = userRepository.getById(2L);
 
         List<ProductRQ> productRQList= invoiceRQ.getProductRQList();
-        List<Product> allProducts = productRepository.findAll();
-        Map<String, Long> productsNameAndIds = new HashMap<>();
-        List<String> allProductsNames = allProducts.stream().map(x -> {
-            productsNameAndIds.put(x.getName(), x.getId());
-            return x.getName();
-        }).collect(Collectors.toList());
 
-        List<Product> productList = new ArrayList<>();
-        for (ProductRQ productRQ: productRQList) {
-            String productRQName = productRQ.getName();
-            boolean nameExists = false;
-            nameExists = allProductsNames.stream().filter(x -> x == productRQName).collect(Collectors.toList()).size() >= 1;
-            if(nameExists){
-                throw new ResourceNotFound("You need to add an Existing Product");
-            }
-            Long productId = productsNameAndIds.get(productRQName);
-            Product product = productRepository.getById(productId);
-            productList.add(product);
-            total += product.getValue();
-        }
-
+        List<Product> products = productRQList.stream()
+                .map(it -> productRepository.findByName(it.getName()))
+                .flatMap(Optional::stream)
+                .map(x -> {
+                    total[0] += x.getValue();
+                    return x;
+                })
+                .collect(Collectors.toList());
+        Long longTotal = total[0];
         Invoice invoice = Invoice
                 .builder()
                 .number(number)
-                .total(total)
+                .total(total[0])
                 .user(user)
-                .productList(productList)
+                .productList(products)
                 .build();
+
+        List<Invoice> invoiceList = new ArrayList<>();
+        int productSize = products.size();
+        for (int i = 0; i < productSize; i++) {
+            invoiceList.add(invoice);
+        }
+        products.forEach(it -> it.setInvoice(invoiceList));
+
         invoiceRepository.save(invoice);
+        productRepository.saveAll(products);
+
+
         return invoice;
     }
 

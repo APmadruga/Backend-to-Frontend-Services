@@ -7,6 +7,8 @@ import com.db.springlogin.service.InvoiceService;
 import com.db.springlogin.service.ProductService;
 import com.db.springlogin.service.response.InvoiceRS;
 import com.db.springlogin.service.response.ProductRS;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,8 @@ public class InvoiceController {
         this.productService = productService;
     }
 
+    @ApiOperation(value = "Update registration detail",
+            authorizations = { @Authorization(value="basicAuth") })
     @GetMapping("/invoices/{id}")
     public ResponseEntity<InvoiceRS> getInvoiceById(Long id){
         Invoice invoice = invoiceService.getInvoiceById(id);
@@ -86,7 +90,7 @@ public class InvoiceController {
         return ResponseEntity.ok(invoiceRSList);
     }
 
-    @PostMapping(value = "/invoice")
+    @PostMapping(value = "/invoices")
     public ResponseEntity<InvoiceRS> createInvoice(@RequestBody InvoiceRQ invoiceRQ){
         Invoice invoice = invoiceService.createInvoice(invoiceRQ);
         Long id = invoice.getId();

@@ -25,16 +25,4 @@ public class UserService implements UserDetailsService {
 
         return user.map(UserDetails::new).get();
     }
-
-   /* public User getUserInformation(){
-        return userRepository.findById(2L).get();
-    }
-
-    public User updateUser(UserRQ userRQ) {
-        User user = userRepository.findById(2L).get();
-        String userName = user.getUserName();
-        String password = user.getPassword();
-        Long age = user.getAge();
-        return userRepository.save(user);
-    }*/
 }

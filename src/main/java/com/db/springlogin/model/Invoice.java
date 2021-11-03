@@ -23,7 +23,7 @@ public class Invoice {
     private User user;
 
     //and invoice can have many products
-    @OneToMany(mappedBy = "invoice")
+    @ManyToMany(mappedBy = "invoice")
     @Column(nullable=true)
     private List<Product> productList;
 

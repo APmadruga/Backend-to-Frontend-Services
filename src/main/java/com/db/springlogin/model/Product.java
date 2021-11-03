@@ -3,6 +3,7 @@ package com.db.springlogin.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,6 +20,6 @@ public class Product {
     private String name;
 
     //product as one invoice
-    @ManyToOne
-    private Invoice invoice;
+    @ManyToMany
+    private List<Invoice> invoice;
 }
