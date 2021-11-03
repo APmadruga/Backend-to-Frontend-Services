@@ -10,6 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InvoiceRQ {
-    private Long number;
+    //private Long number;
     private List<ProductRQ> productRQList;
 }

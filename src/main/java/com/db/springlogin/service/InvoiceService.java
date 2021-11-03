@@ -27,7 +27,14 @@ public class InvoiceService {
         this.productRepository = productRepository;
     }
     public Invoice createInvoice(InvoiceRQ invoiceRQ) {
-        Long number = invoiceRQ.getNumber();
+        // It will generate 6 digit random Number.
+        // from 0 to 999999
+        Random rnd = new Random();
+        int randomNumber = rnd.nextInt(999999);
+
+        // this will convert any number sequence into 6 character.
+
+        Long number = Long.valueOf(randomNumber);//invoiceRQ.getNumber();
         final Long[] total = {0L};
         User user = userRepository.getById(2L);
 

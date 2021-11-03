@@ -18,6 +18,7 @@ public class Invoice {
     private Long number;
     private Long total;
 
+
     //invoice has only one User
     @ManyToOne
     private User user;
