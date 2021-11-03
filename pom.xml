@@ -9,10 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.db.springlogin</groupId>
-    <artifactId>loja</artifactId>
+    <artifactId>ProjetoFinal</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>loja</name>
-    <description>API Project Loja</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -69,6 +67,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>ProjetoFinal</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

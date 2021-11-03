@@ -8,5 +8,16 @@ services:
     environment:
       MYSQL_USER: user
       MYSQL_PASSWORD: pass
-      MYSQL_ROOT_PASSWORD: Lisbon$2021
+      MYSQL_ROOT_PASSWORD: pass
       MYSQL_DATABASE: user_login
+  frontback:
+    image: projetofinal
+    ports:
+      - "8080:8080"
+    #    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3307/user_login
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: pass
+    depends_on:
+      - mysql
