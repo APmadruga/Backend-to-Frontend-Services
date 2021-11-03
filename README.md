@@ -1,5 +1,5 @@
 ### SpringBoot API + SpringSecurity ###
-#### Group: André  Madruga Paulo, Nikolay Novachuk, Dominique Tavares Ganime Bastos####
+#### Group: André  Madruga Paulo, Nikolay Novachuk, Dominique Tavares Ganime Bastos
 *API to test the knowledge acquired during the bootcamp.*
 
 Name of the project: **Backend-to-Frontend-Services**
