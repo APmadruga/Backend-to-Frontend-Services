@@ -36,7 +36,6 @@ public class InvoiceService {
 
         List<ProductRQ> productRQList= invoiceRQ.getProductRQList();
         List<Product> allProducts = productRepository.findAll();
-        List<Long> idProductList = new ArrayList<>();
         Map<String, Long> productsNameAndIds = new HashMap<>();
         List<String> allProductsNames = allProducts.stream().map(x -> {
             productsNameAndIds.put(x.getName(), x.getId());
@@ -66,6 +65,19 @@ public class InvoiceService {
                 .build();
         invoiceRepository.save(invoice);
         return invoice;
+    }
+
+    public List<Invoice> getInvoicesForUser() {
+        //User is always the same
+        return invoiceRepository.findAll();
+    }
+
+    public Invoice getInvoiceById(Long id) {
+        try{
+            return invoiceRepository.findById(id).get();
+        }catch (Exception e){
+            throw new ResourceNotFound("Invoice Not Found");
+        }
     }
 
 /*    public List<Product> addProductsToInvoice(List<ProductRQ> productRQList) {
