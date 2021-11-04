@@ -1,5 +1,4 @@
 package com.db.springlogin.service;
-
 import com.db.springlogin.controller.requests.UserRQ;
 import com.db.springlogin.model.User;
 import com.db.springlogin.repository.UserRepository;

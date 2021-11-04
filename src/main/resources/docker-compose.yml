@@ -4,7 +4,7 @@ services:
     hostname: mysql
     image: 'mysql:latest'
     ports:
-      - "3306:3307"
+      - "3307:3306"
     environment:
       MYSQL_USER: user
       MYSQL_PASSWORD: pass
@@ -16,7 +16,7 @@ services:
       - "8080:8080"
     #    restart: always
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3307/user_login
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/user_login
       SPRING_DATASOURCE_USERNAME: user
       SPRING_DATASOURCE_PASSWORD: pass
     depends_on:

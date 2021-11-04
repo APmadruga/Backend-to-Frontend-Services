@@ -1,18 +1,12 @@
 package com.db.springlogin;
-
-import com.db.springlogin.model.Invoice;
 import com.db.springlogin.model.Product;
 import com.db.springlogin.model.User;
 import com.db.springlogin.repository.ProductRepository;
 import com.db.springlogin.repository.UserRepository;
-import org.assertj.core.util.Arrays;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 public class SpringLoginApplication {

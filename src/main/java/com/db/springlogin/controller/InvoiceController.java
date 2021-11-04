@@ -1,18 +1,13 @@
 package com.db.springlogin.controller;
 import com.db.springlogin.controller.requests.InvoiceRQ;
-import com.db.springlogin.controller.requests.ProductRQ;
 import com.db.springlogin.model.Invoice;
 import com.db.springlogin.model.Product;
 import com.db.springlogin.service.InvoiceService;
 import com.db.springlogin.service.ProductService;
 import com.db.springlogin.service.response.InvoiceRS;
 import com.db.springlogin.service.response.ProductRS;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Authorization;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,9 +51,6 @@ public class InvoiceController {
         return ResponseEntity.ok(invoiceRS);
     }
 
-
-    @ApiOperation(value = "Update registration detail",
-            authorizations = { @Authorization(value="basicAuth") })
     @GetMapping("/invoices/{id}")
     public ResponseEntity<InvoiceRS> getInvoiceById(Long id){
         Invoice invoice = invoiceService.getInvoiceById(id);
@@ -130,7 +122,6 @@ public class InvoiceController {
         Long id = invoice.getId();
         Long number = invoice.getNumber();
         Long total = invoice.getTotal();
-
         List<Product> productList = invoice.getProductList();
         List<ProductRS> productRSList = new ArrayList<ProductRS>();
         for (Product product : productList){

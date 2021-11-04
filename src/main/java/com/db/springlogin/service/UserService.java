@@ -1,7 +1,4 @@
 package com.db.springlogin.service;
-
-
-import com.db.springlogin.controller.requests.UserRQ;
 import com.db.springlogin.model.User;
 import com.db.springlogin.model.UserDetails;
 import com.db.springlogin.repository.UserRepository;
@@ -9,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service

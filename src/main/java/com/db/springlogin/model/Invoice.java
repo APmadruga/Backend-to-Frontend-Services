@@ -1,7 +1,5 @@
 package com.db.springlogin.model;
-
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,14 +17,9 @@ public class Invoice {
     private Long number;
     private Long total;
     private String name;
-
-    //invoice has only one User
     @ManyToOne
     private User user;
-
-    //and invoice can have many products
     @ManyToMany(mappedBy = "invoice")
     @Column(nullable=true)
     private List<Product> productList;
-
 }
