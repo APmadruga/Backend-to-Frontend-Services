@@ -15,6 +15,7 @@ When oppening the project you need to run in project path in terminal
 ``` docker-compose -f src\main\resources up mysql ```
 
 Go back to project inicial path and run 
+
 ``` mvn package ```
 
 ``` docker build . -t projetofinal ```
