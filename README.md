@@ -4,6 +4,30 @@
 
 Name of the project: **Backend-to-Frontend-Services**
 
+In order to put api running you need to install docker https://docs.docker.com/get-docker/ 
+
+create and acount https://hub.docker.com/ 
+
+if you're using intellij Ide install docker plugin
+
+When oppening the project you need to run in project path in terminal 
+
+``` docker-compose -f src\main\resources up mysql ```
+
+Go back to project inicial path and run 
+``` mvn package ```
+
+``` docker build . -t projetofinal ```
+
+``` docker login --username=dockerHubUserName --password=aaaaaaaaa ```
+
+``` docker-compose -f src\main\resources up frontback ```
+
+
+you can open Swagger connecting in port 8080 to test the api
+
+
+
 This project aims to simulate a simple online shopping list for a user, where he aims to create his personal data using his personnal password and name, and edit it. Also, each created user is able to pick up different grocery products and create new invoce, knowing the total price of each invoice, consult his personal invoices, navigate the data added to database.
 Before we started working, we defined our Swagger to FrontEnd to integrate the final result of our API.
 
