@@ -16,6 +16,8 @@ When oppening the project you need to run in project path in terminal
 
 Go back to project inicial path and run 
 
+``` mvn clean ```
+
 ``` mvn package ```
 
 ``` docker build . -t projetofinal ```
